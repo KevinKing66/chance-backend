@@ -21,6 +21,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String email;
+
     private String name;
 
     @Column(name = "role_id")
