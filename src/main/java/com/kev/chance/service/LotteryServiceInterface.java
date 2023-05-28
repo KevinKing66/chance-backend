@@ -10,4 +10,6 @@ import java.util.List;
 public interface LotteryServiceInterface {
 
     List<Lottery> findAll();
+
+    Lottery save(Lottery e);
 }

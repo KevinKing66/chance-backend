@@ -9,6 +9,9 @@ import java.util.List;
  */
 public interface LotteryWinnerServiceInterface {
 
-    List<LotteryWinner> findLastWinnerByCode(String code);
+    List<LotteryWinner> findLastesWinners();
 
+    List<LotteryWinner> findLastestWinnersByLotteryCode(String code);
+
+    void save(LotteryWinner entity);
 }

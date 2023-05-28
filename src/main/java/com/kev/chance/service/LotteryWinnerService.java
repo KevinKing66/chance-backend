@@ -21,11 +21,20 @@ public class LotteryWinnerService implements LotteryWinnerServiceInterface {
     LotteryWinnerRepository repo;
 
     @Override
-    public List<LotteryWinner> findLastWinnerByCode(String code) {
+    public List<LotteryWinner> findLastesWinners() {
         Sort sort = Sort.by(
                 Sort.Order.desc("date"),
                 Sort.Order.asc("digits"));
         return repo.findAll(sort);
+    }
+
+    @Override
+    public List<LotteryWinner> findLastestWinnersByLotteryCode(String code) {
+        return repo.findAllByLotteryCode(code);
+    }
+
+    public void save(LotteryWinner entity) {
+        repo.save(entity);
     }
 
 }

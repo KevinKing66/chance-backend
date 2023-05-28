@@ -25,4 +25,9 @@ public class LotteryService implements LotteryServiceInterface {
         return repo.findAll(sort);
     }
 
+    @Override
+    public Lottery save(Lottery e) {
+        return repo.save(e);
+    }
+
 }

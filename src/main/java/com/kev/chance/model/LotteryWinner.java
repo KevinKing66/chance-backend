@@ -25,6 +25,7 @@ public class LotteryWinner {
 
     @Column(name = "lottery_code")
     String lotteryCode;
+    
     Timestamp date;
 
     @Column(name = "number_winner")

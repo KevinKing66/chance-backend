@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Kevin
  */
 @RestController
-@RequestMapping(value = "api/chance/v1", produces = "application/json")
-public class ChanceController {
+@RequestMapping(value = "api/sync/v1", produces = "application/json")
+public class SyncController {
 
     @Autowired
     OtherService otherService;
@@ -32,21 +32,10 @@ public class ChanceController {
     @Autowired
     LotteryWinnerService lotteryWinnerService;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public ResponseEntity hello() {
-        return ResponseEntity.ok("hola");
-    }
-
     @RequestMapping(value = "/lottery", method = RequestMethod.GET)
     public ResponseEntity allLotteries() {
         List<Lottery> lotteries = lotteryService.findAll();
         return ResponseEntity.ok(lotteries);
-    }
-
-    @RequestMapping(value = "/lottery", method = RequestMethod.POST)
-    public ResponseEntity create(@RequestBody Lottery entity) {
-        lotteryService.save(entity);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Dato creado exitosamente");
     }
 
     @RequestMapping(value = "/winner", method = RequestMethod.GET)
@@ -54,29 +43,12 @@ public class ChanceController {
         List<LotteryWinner> lotteries = lotteryWinnerService.findLastesWinners();
         return ResponseEntity.ok(lotteries);
     }
-
-    @RequestMapping(value = "/winner", method = RequestMethod.POST)
-    public ResponseEntity saveLastWinner(@RequestBody LotteryWinner entity) {
-        lotteryWinnerService.save(entity);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Dato creado exitosamente");
-    }
-
-    @RequestMapping(value = "/winner/{lottery}", method = RequestMethod.GET)
-    public ResponseEntity lastWinnerbyLotteryCode(@PathVariable("lottery") String code) {
-        List<LotteryWinner> lotteries = lotteryWinnerService.findLastestWinnersByLotteryCode(code);
+    
+    
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ResponseEntity users() {
+        List<LotteryWinner> lotteries = lotteryWinnerService.findLastesWinners();
         return ResponseEntity.ok(lotteries);
-    }
-
-    @RequestMapping(value = "/invoice", method = RequestMethod.POST)
-    public ResponseEntity SaveInvoiceAndChances(@RequestBody InvoiceWithChancesDto dto) {
-        otherService.saveInvoiceAndChance(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Dato creado exitosamente");
-    }
-
-    @RequestMapping(value = "/invoices", method = RequestMethod.POST)
-    public ResponseEntity SaveInvoicesAndChances(@RequestBody List<InvoiceWithChancesDto> dtos) {
-        otherService.saveInvoicesAndChances(dtos);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Dato creado exitosamente");
     }
 
     @RequestMapping(value = "/generate", method = RequestMethod.GET)
