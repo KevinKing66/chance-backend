@@ -6,7 +6,6 @@ import com.kev.chance.model.LotteryWinner;
 import com.kev.chance.service.LotteryService;
 import com.kev.chance.service.LotteryWinnerService;
 import com.kev.chance.service.OtherService;
-import com.kev.chance.util.helper.ObjectHelper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,8 +60,8 @@ public class ChanceController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Dato creado exitosamente");
     }
 
-    @RequestMapping(value = "/winner/{lottery}", method = RequestMethod.GET)
-    public ResponseEntity lastWinnerbyLotteryCode(@PathVariable("lottery") String code) {
+    @RequestMapping(value = "/winner/{lotteryCode}", method = RequestMethod.GET)
+    public ResponseEntity lastWinnerbyLotteryCode(@PathVariable("lotteryCode") String code) {
         List<LotteryWinner> lotteries = lotteryWinnerService.findLastestWinnersByLotteryCode(code);
         return ResponseEntity.ok(lotteries);
     }
@@ -76,18 +75,6 @@ public class ChanceController {
     @RequestMapping(value = "/invoices", method = RequestMethod.POST)
     public ResponseEntity SaveInvoicesAndChances(@RequestBody List<InvoiceWithChancesDto> dtos) {
         otherService.saveInvoicesAndChances(dtos);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Dato creado exitosamente");
-    }
-
-    @RequestMapping(value = "/generate", method = RequestMethod.GET)
-    public ResponseEntity generate() {
-        InvoiceWithChancesDto dto = ObjectHelper.fillInvoiceDto();
-       /* try {
-            SaveInvoiceAndChances(dto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE).body("El servidor ha falladp");
-        }*/
-        return ResponseEntity.status(HttpStatus.OK).body(ObjectHelper.objToString(dto));
+        return ResponseEntity.status(HttpStatus.CREATED).body("Datos creados exitosamente");
     }
 }
