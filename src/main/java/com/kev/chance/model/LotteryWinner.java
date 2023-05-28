@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.sql.Date;
 import java.sql.Timestamp;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,13 +21,14 @@ import lombok.NoArgsConstructor;
 public class LotteryWinner {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
 
     @Column(name = "lottery_code")
     String lotteryCode;
-    
-    Timestamp date;
+
+    Date date;
 
     @Column(name = "number_winner")
     String numberWinner;
