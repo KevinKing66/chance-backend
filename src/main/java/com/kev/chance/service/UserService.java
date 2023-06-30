@@ -1,8 +1,10 @@
 package com.kev.chance.service;
 
+import com.kev.chance.dto.LoginDto;
 import com.kev.chance.model.User;
 import com.kev.chance.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -33,13 +35,11 @@ public class UserService implements UserServiceInterface {
         return repo.findByEmail(email);
     }
 
-    public Object login(User entity) {
+    @Override
+    public User findUserByEmailOrDoc(LoginDto entity) {
         User userOut = repo.findByEmail(entity.getEmail());
         if (userOut == null) {
-            return noExistUser;
-        }
-        if (userOut.getPassword().equals(entity.getPassword())) {
-            return wrongPassword;
+            userOut = repo.findByNumDoc(entity.getEmail());
         }
 
         return userOut;
@@ -70,6 +70,21 @@ public class UserService implements UserServiceInterface {
         }
 
         return word.toString();
+    }
+
+    @Override
+    public List<User> syncUp(List<User> users) {
+        for (User user : users) {
+            if (repo.findByEmail(user.getEmail()) == null && repo.findByNumDoc(user.getNumDoc()) == null) {
+                repo.save(user);
+            }
+        }
+        return repo.findAll();
+    }
+
+    @Override
+    public List<User> findAll() {
+        return repo.findAll();
     }
 
 }

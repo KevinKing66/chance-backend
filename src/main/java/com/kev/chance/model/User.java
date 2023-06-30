@@ -18,12 +18,16 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
 
     private String email;
 
     private String name;
+
+    @Column(name = "num_doc")
+    private String numDoc;
 
     @Column(name = "role_id")
     private int roleId;

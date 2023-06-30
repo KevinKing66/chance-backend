@@ -2,6 +2,7 @@ package com.kev.chance.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.time.LocalTime;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,5 +19,6 @@ public class Lottery {
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private String code;
     private String name;
-
+    private int day;
+    private LocalTime time;
 }

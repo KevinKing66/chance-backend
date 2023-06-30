@@ -35,7 +35,7 @@ public class Chance {
     private double value;
 
     @Column(name = "lottery_code")
-    private String lotteryCode;
+    private String lottery;
 
     @Column(name = "play_date")
     private Timestamp playDate;
