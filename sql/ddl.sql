@@ -7,8 +7,8 @@
  * Created: 25/05/2023
  */
 
- create user 'admin'@'localhost' identified by 'admin';
+ create user 'kevin'@'localhost' identified by 'KevinValledupar';
 
  CREATE DATABASE chance;
 
- GRANT ALL PRIVILEGES ON CHANCE.* TO 'admin'@'localhost';
+ GRANT ALL PRIVILEGES ON CHANCE.* TO 'kevin'@'localhost';
