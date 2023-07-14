@@ -26,6 +26,9 @@ public class User {
 
     private String name;
 
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'WAIT'")
+    private String status;
+
     @Column(name = "num_doc")
     private String numDoc;
 
@@ -36,5 +39,4 @@ public class User {
 
     private String password;
 
-    private String Salt;
 }
