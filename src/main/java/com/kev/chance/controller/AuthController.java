@@ -38,7 +38,7 @@ public class AuthController {
 
     @RequestMapping(value = "/logUp", method = RequestMethod.POST)
     public ResponseEntity logUp(@RequestBody User entity) {
-        
+        entity.setStatus("ENABLED");
         User user = service.findUserByEmail(entity.getEmail());
         if(user != null){
             return ResponseEntity.status(400).body("Usuaurio ya existente");
