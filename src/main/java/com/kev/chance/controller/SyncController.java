@@ -1,5 +1,6 @@
 package com.kev.chance.controller;
 
+import com.kev.chance.dto.InvoiceAndChancesDto;
 import com.kev.chance.dto.InvoiceWithChancesDto;
 import com.kev.chance.model.Lottery;
 import com.kev.chance.model.LotteryWinner;
@@ -46,17 +47,25 @@ public class SyncController {
         List<LotteryWinner> lotteries = lotteryWinnerService.findLastesWinners();
         return ResponseEntity.ok(lotteries);
     }
-    
+
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public ResponseEntity users(@RequestBody  List<User> usersIn) {
+    public ResponseEntity users(@RequestBody List<User> usersIn) {
         List<User> userOut = userService.syncUp(usersIn);
         return ResponseEntity.ok(userOut);
+    }
+
+    @RequestMapping(value = "/invoices", method = RequestMethod.POST)
+    public ResponseEntity SaveInvoicesAndChances(@RequestBody List<InvoiceWithChancesDto> dtos) {
+        dtos.forEach((e) -> e.getInvoice().setSync(1));
+        InvoiceAndChancesDto res = otherService.syncInvoicesAndChances(dtos);
+        
+        return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
     @RequestMapping(value = "/generate", method = RequestMethod.GET)
     public ResponseEntity generate() {
         InvoiceWithChancesDto dto = ObjectHelper.fillInvoiceDto();
-       /* try {
+        /* try {
             SaveInvoiceAndChances(dto);
         } catch (Exception e) {
             e.printStackTrace();

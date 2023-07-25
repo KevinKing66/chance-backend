@@ -10,7 +10,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ChanceRepository extends JpaRepository<Chance, Long> {
 
-    List<Chance> findAllByInvoiceId(long uuid);
+    List<Chance> findAllByInvoiceId(long id);
+
+    List<Chance> findByInvoiceIdIn(List<Long> invoiceIds);
 
     @Override
     Chance save(Chance entity);

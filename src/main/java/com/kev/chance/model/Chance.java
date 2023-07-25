@@ -32,6 +32,7 @@ public class Chance {
 
     private int number;
 
+    @Column(name = "value_with_tax")
     private double value;
 
     @Column(name = "lottery_code")

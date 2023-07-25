@@ -32,7 +32,7 @@ public class ObjectHelper {
 
     public static InvoiceWithChancesDto fillInvoiceDto() {
         Invoice invoice = new Invoice();
-        invoice.setCreateByUserId("userPrueba");
+        invoice.setCreatedByUserId("userPrueba");
         invoice.setValue(2000);
         invoice.setIva(380);
         invoice.setTotalValue(invoice.getValue() + invoice.getIva());

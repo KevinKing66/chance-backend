@@ -68,6 +68,7 @@ public class ChanceController {
 
     @RequestMapping(value = "/invoice", method = RequestMethod.POST)
     public ResponseEntity SaveInvoiceAndChances(@RequestBody InvoiceWithChancesDto dto) {
+        dto.getInvoice().setSync(1);
         otherService.saveInvoiceAndChance(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body("Dato creado exitosamente");
     }
