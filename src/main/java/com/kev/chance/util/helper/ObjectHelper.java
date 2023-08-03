@@ -39,8 +39,8 @@ public class ObjectHelper {
         invoice.setCreationDateTime(new Timestamp(System.currentTimeMillis()));
         invoice.setLocation("banco de pruebas");
         
-        Chance chance1 = new Chance(1, invoice.getId(), 3, 123, 1000, "lottery_code", new Timestamp(System.currentTimeMillis()));
-        Chance chance2 = new Chance(2, invoice.getId(), 3, 123, 1000, "lottery_code", new Timestamp(System.currentTimeMillis()));
+        Chance chance1 = new Chance(1, invoice.getId(), 3, "123", 1000, "lottery_code", new Timestamp(System.currentTimeMillis()));
+        Chance chance2 = new Chance(2, invoice.getId(), 3, "123", 1000, "lottery_code", new Timestamp(System.currentTimeMillis()));
         List<Chance> chances = new ArrayList();
         chances.add(chance1);
         chances.add(chance2);
