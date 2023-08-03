@@ -19,14 +19,14 @@ INSERT INTO lotteries VALUES('TOLI', 1, 'TOLIMA', '22:00:00');
 INSERT INTO lotteries VALUES('CRUZ', 2, 'CRUZ ROJA', '21:30:00');
 INSERT INTO lotteries VALUES('HUIL', 2, 'HUILA', '21:30:00');
 
-INSERT INTO lotteries VALUES('CUND', 3, 'MANIZALES', '21:30:00');
+INSERT INTO lotteries VALUES('MANI', 3, 'MANIZALES', '21:30:00');
 INSERT INTO lotteries VALUES('META', 3, 'META', '21:30:00');
 INSERT INTO lotteries VALUES('VALL', 3, 'VALLE', '21:30:00');
 
 INSERT INTO lotteries VALUES('QUIN', 4, 'QUINDIO', '21:30:00');
 INSERT INTO lotteries VALUES('BOGO', 4, 'BOGOTÁ', '21:30:00');
 
-INSERT INTO lotteries VALUES('CUND', 5, 'SORTEO SANTANDER', '22:00:00');
+INSERT INTO lotteries VALUES('SANT', 5, 'SORTEO SANTANDER', '22:00:00');
 INSERT INTO lotteries VALUES('MEDE', 5, 'MEDELLIN', '22:00:00');
 INSERT INTO lotteries VALUES('RISA', 5, 'RISARALDA', '22:00:00');
 
@@ -87,3 +87,15 @@ INSERT INTO lotteries VALUES('Sam3', 3, 'El Samán de la Suerte', '12:30:00');
 INSERT INTO lotteries VALUES('Sam4', 4, 'El Samán de la Suerte', '12:30:00');
 INSERT INTO lotteries VALUES('Sam5', 5, 'El Samán de la Suerte', '12:30:00');
 INSERT INTO lotteries VALUES('Sam6', 6, 'El Samán de la Suerte', '18:00:00');
+
+
+
+---SHOW DATA---
+ SELECT 
+ chances.id, chances.invoice_id, chances.digits, chances.number, chances.value_with_tax, chances.lottery_code, chances.play_date, invoices.created_by_user_id
+  FROM chances
+  INNER JOIN invoices
+    ON chances.invoice_id = invoices.id
+      WHERE
+        invoices.created_by_user_id LIKE '%cauca%'
+        AND play_date > 1690520400000;
