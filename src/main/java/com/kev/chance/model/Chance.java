@@ -30,7 +30,7 @@ public class Chance {
 
     private int digits;
 
-    private int number;
+    private String number;
 
     @Column(name = "value_with_tax")
     private double value;
