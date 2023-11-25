@@ -58,19 +58,8 @@ public class SyncController {
     public ResponseEntity SaveInvoicesAndChances(@RequestBody List<InvoiceWithChancesDto> dtos) {
         dtos.forEach((e) -> e.getInvoice().setSync(1));
         InvoiceAndChancesDto res = otherService.syncInvoicesAndChances(dtos);
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
-    @RequestMapping(value = "/generate", method = RequestMethod.GET)
-    public ResponseEntity generate() {
-        InvoiceWithChancesDto dto = ObjectHelper.fillInvoiceDto();
-        /* try {
-            SaveInvoiceAndChances(dto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE).body("El servidor ha falladp");
-        }*/
-        return ResponseEntity.status(HttpStatus.OK).body(ObjectHelper.objToString(dto));
-    }
 }

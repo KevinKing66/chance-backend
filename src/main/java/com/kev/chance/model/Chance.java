@@ -41,4 +41,6 @@ public class Chance {
     @Column(name = "play_date")
     private Timestamp playDate;
 
+    private double award;
+
 }

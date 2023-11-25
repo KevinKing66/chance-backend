@@ -11,7 +11,7 @@
 
  CREATE DATABASE chance;
 
- GRANT ALL PRIVILEGES ON CHANCE.* TO 'kevin'@'localhost';Ç
+ GRANT ALL PRIVILEGES ON CHANCE.* TO 'kevin'@'localhost';
 
 ---- 24-jul-2023 ----
 ALTER TABLE chances DROP COLUMN value_with_tax;

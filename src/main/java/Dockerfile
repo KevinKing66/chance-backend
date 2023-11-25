@@ -1,4 +1,4 @@
-FROM eclipse-temurin:20-jdk
+FROM openjdk:17
 
 RUN apt-get update \
   && apt-get install -y ca-certificates curl git --no-install-recommends \

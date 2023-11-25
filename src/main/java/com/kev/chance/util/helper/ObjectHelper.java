@@ -29,7 +29,7 @@ public class ObjectHelper {
             return json;
         }
     }
-
+/*
     public static InvoiceWithChancesDto fillInvoiceDto() {
         Invoice invoice = new Invoice();
         invoice.setCreatedByUserId("userPrueba");
@@ -46,5 +46,5 @@ public class ObjectHelper {
         chances.add(chance2);
         InvoiceWithChancesDto dto = new InvoiceWithChancesDto(invoice, chances);
         return dto;
-    }
+    }*/
 }

@@ -86,16 +86,57 @@ INSERT INTO lotteries VALUES('Sam2', 2, 'El Samán de la Suerte', '12:30:00');
 INSERT INTO lotteries VALUES('Sam3', 3, 'El Samán de la Suerte', '12:30:00');
 INSERT INTO lotteries VALUES('Sam4', 4, 'El Samán de la Suerte', '12:30:00');
 INSERT INTO lotteries VALUES('Sam5', 5, 'El Samán de la Suerte', '12:30:00');
-INSERT INTO lotteries VALUES('Sam6', 6, 'El Samán de la Suerte', '18:00:00');
+INSERT INTO lotteries VALUES('Sam6', 6, 'El Samán de la Suerte', '12:30:00');
+INSERT INTO lotteries VALUES('Sam7', 7, 'El Samán de la Suerte', '17:30:00');
 
+
+
+INSERT INTO lotteries VALUES('DorT7', 7, 'Dorado Tarde', '19:00:00');
 
 
 ---SHOW DATA---
  SELECT 
- chances.id, chances.invoice_id, chances.digits, chances.number, chances.value_with_tax, chances.lottery_code, chances.play_date, invoices.created_by_user_id
+ chances.id, chances.invoice_id, chances.digits, chances.number, chances.value_with_tax, chances.lottery_code, invoices.created_by_user_id, invoices.creation_date_time, chances.play_date 
   FROM chances
   INNER JOIN invoices
     ON chances.invoice_id = invoices.id
       WHERE
-        invoices.created_by_user_id LIKE '%cauca%'
-        AND play_date > 1690520400000;
+        invoices.created_by_user_id LIKE '%kevin@admin.com%'
+        AND play_date > 1690520400000
+            ORDER BY invoices.creation_date_time DESC;
+
+ SELECT   SUM(chances.value_with_tax), invoices.created_by_user_id    
+    FROM chances   
+        INNER JOIN invoices     
+            ON chances.invoice_id = invoices.id       
+                WHERE         invoices.created_by_user_id
+                    LIKE '%olaya22%'         
+                        AND play_date > DATE_ADD(NOW(), INTERVAL -19 HOUR)             
+                ORDER BY invoices.creation_date_time DESC;
+
+ SELECT   SUM(chances.value_with_tax), invoices.created_by_user_id    
+    FROM chances   
+        INNER JOIN invoices     
+            ON chances.invoice_id = invoices.id       
+                WHERE  
+                    play_date > DATE_ADD(NOW(), INTERVAL -19 HOUR)  
+                GROUP BY invoices.created_by_user_id           
+                ORDER BY invoices.creation_date_time DESC;
+
+
+ SELECT 
+ chances.id, chances.invoice_id, chances.digits, chances.number, chances.value_with_tax, chances.lottery_code, invoices.created_by_user_id, invoices.creation_date_time, chances.play_date 
+  FROM chances
+  INNER JOIN invoices
+    ON chances.invoice_id = invoices.id
+      WHERE
+        invoices.created_by_user_id LIKE '%kevin@admin.com%'
+        AND play_date > DATE_ADD(NOW(), INTERVAL -19 HOUR)
+            ORDER BY invoices.creation_date_time DESC;
+
+
+ SELECT created_by_user_id, SUM(total_value) 
+    FROM invoices 
+        WHERE creation_date_time 
+            BETWEEN DATE_ADD(NOW(), INTERVAL -3 DAY) AND DATE_ADD(NOW(), INTERVAL -2 DAY) 
+        GROUP BY created_by_user_id;
